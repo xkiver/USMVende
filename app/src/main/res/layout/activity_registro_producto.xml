@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lytcontenedor"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/tvIsConnected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#FF0000"
+        android:textColor="#FFF"
+        android:textSize="18dp"
+        android:layout_marginBottom="5dp"
+        android:text="is connected?" />
+
+    <TextView
+        android:id="@+id/lblNombreProducto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre Producto" />
+
+    <EditText
+        android:id="@+id/txtNombreProducto"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"/>
+
+    <TextView
+        android:id="@+id/lblDescpProducto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descripción del Producto" />
+
+    <EditText
+        android:id="@+id/txtDescpProducto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="text"
+        android:layout_weight="0.25" />
+
+    <TextView
+        android:id="@+id/lblPrecioProducto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Precio del Producto" />
+
+    <EditText
+        android:id="@+id/txtPrecioProducto"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"/>
+
+    <TextView
+        android:id="@+id/lblNombreVendedor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre Vendedor" />
+
+    <EditText
+        android:id="@+id/txtNombreVendedor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"/>
+
+    <Button
+        android:id="@+id/btnRegistrarProducto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrar Producto"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/btnVenderProducto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vender"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
