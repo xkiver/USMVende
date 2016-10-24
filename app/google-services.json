@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "480701540016",
+    "project_id": "usmvende"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480701540016:android:77fc58879398a383",
+        "android_client_info": {
+          "package_name": "cl.telematica.android.usmvende"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBy7n2hG2q0m__3lNNlPMd05hidNUmqgtE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
