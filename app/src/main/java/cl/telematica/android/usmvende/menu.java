@@ -63,7 +63,7 @@ public class menu extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
     }
 
 
