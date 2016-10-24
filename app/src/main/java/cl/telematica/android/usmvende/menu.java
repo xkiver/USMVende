@@ -14,6 +14,9 @@ public class menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        Intent i = new Intent(this, RegistrationService.class);
+        startService(i);
+
         btnComprar = (Button) findViewById(R.id.btnComprador);
         btnVender = (Button) findViewById(R.id.btnVendedor);
 
