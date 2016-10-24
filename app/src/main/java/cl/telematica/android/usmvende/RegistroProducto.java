@@ -148,7 +148,6 @@ public class RegistroProducto extends AppCompatActivity implements View.OnClickL
 
     }
 
-
     //Metodo que realiza la conexion y procesa los datos de envio y recibo
     public static String POST(String targeturl, Producto person) {
         String result = "";
@@ -221,26 +220,6 @@ public class RegistroProducto extends AppCompatActivity implements View.OnClickL
 
         return response.toString();
     }//POST
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     //Metodo para asegurarse de que no se envie info en vacia
