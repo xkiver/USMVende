@@ -27,12 +27,13 @@ public class RegistrationService extends IntentService {
         }
         Log.d("Registration Token", registrationToken);
 
+        /*
         GcmPubSub subscription = GcmPubSub.getInstance(this);
         try {
             subscription.subscribe(registrationToken, "/topics/my_little_topic", null);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
     }
 }
