@@ -11,12 +11,17 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <service android:name=".RegistrationService" android:exported="false" />
-    <service
-        android:name=".TokenRefreshListenerService"
-        android:exported="false">
+    <service android:name=".RegistrationService" android:exported="false" >
         <intent-filter>
             <action android:name="com.google.android.gms.iid.InstanceID" />
+        </intent-filter>
+    </service>
+
+    <service
+        android:name=".NotificationsListenerService"
+        android:exported="false" >
+        <intent-filter>
+            <action android:name="com.google.android.c2dm.intent.RECEIVE" />
         </intent-filter>
     </service>
 
@@ -40,7 +45,7 @@
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <category android:name="com.github.hathibelagal.pn" />
+                <category android:name="cl.telematica.android.usmvende" />
             </intent-filter>
         </receiver>
         <activity android:name=".menu">
