@@ -11,19 +11,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <service android:name=".RegistrationService" android:exported="false" >
-        <intent-filter>
-            <action android:name="com.google.android.gms.iid.InstanceID" />
-        </intent-filter>
-    </service>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
-    <service
-        android:name=".NotificationsListenerService"
-        android:exported="false" >
-        <intent-filter>
-            <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-        </intent-filter>
-    </service>
+
 
     //PERMISOS GCM
     <permission
@@ -38,6 +28,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
@@ -49,6 +40,19 @@
 
             </intent-filter>
         </receiver>
+        <service android:name=".RegistrationService" android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".NotificationsListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
         <activity android:name=".menu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
