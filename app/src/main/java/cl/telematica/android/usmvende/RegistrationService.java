@@ -20,7 +20,20 @@ public class RegistrationService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        InstanceID myID = InstanceID.getInstance(this);
+        InstanceID myID = null;
+        String registrationToken="";
+        try {
+            myID = InstanceID.getInstance(this);
+            registrationToken= myID.getToken(getString(R.string.gcm_defaultSenderId), GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
+            Log.d("Registration Token", registrationToken);
+            GcmPubSub subscription = GcmPubSub.getInstance(this);
+            subscription.subscribe(registrationToken, "/topics/my_little_topic", null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        /*
+        InstanceID myID = InstanceID.getInstance(getApplicationContext());
         String registrationToken = null;
         Intent registrationComplete = null;
         try {
@@ -32,15 +45,9 @@ public class RegistrationService extends IntentService {
             e.printStackTrace();
             registrationComplete = new Intent("REGISTRATION_ERROR");
         }
-        //Toast.makeText(this,registrationToken, Toast.LENGTH_SHORT).show();//("Registration Token", registrationToken);
+        Toast.makeText(this,registrationToken, Toast.LENGTH_SHORT).show();//("Registration Token", registrationToken);
         LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
-      /*  GcmPubSub subscription = GcmPubSub.getInstance(this);
 
-        try {
-            //subscription.subscribe(registrationToken, "/topics/my_little_topic", null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
+        */
     }
 }

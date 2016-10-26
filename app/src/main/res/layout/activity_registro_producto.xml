@@ -82,7 +82,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:weightSum="1">
                 <Button
                     android:id="@+id/btnRegistrarProducto"
                     android:layout_width="wrap_content"
@@ -90,12 +91,24 @@
                     android:text="Registrar Producto"
                     android:layout_gravity="center_horizontal" />
 
-                <Button
+                <Switch
                     android:id="@+id/btnVenderProducto"
                     android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="0.19"
+                    android:textOn="on"
+                    android:textOff="off"
+                    android:checked="false" />
+
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Vender"
-                    android:layout_gravity="center_horizontal" />
+                    android:background="#FF0000"
+                    android:textColor="#FFF"
+                    android:textSize="20dp"
+                    android:text="is selling?" />
             </LinearLayout>
 
             <TextView

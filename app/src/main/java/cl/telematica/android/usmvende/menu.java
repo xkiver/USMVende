@@ -11,22 +11,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
 public class menu extends AppCompatActivity {
-    private BroadcastReceiver mRegistrationBroadcastReceiver;
-    Button btnComprar, btnVender;
+    //private BroadcastReceiver mRegistrationBroadcastReceiver;
+    Button btnVender;
+    Button btnComprar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        /*
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 if(intent.getAction().endsWith("REGISTRATION_SUCCESS")){
                     String token = intent.getStringExtra("token");
-                    Toast.makeText(getApplicationContext(), "GCMtoken :" + token, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "GCM token :" + token, Toast.LENGTH_LONG).show();
                 }
                 else if (intent.getAction().equals("REGISTRATION_ERROR")){
                     Toast.makeText(getApplicationContext(), "GCM Registration Error", Toast.LENGTH_LONG).show();
@@ -34,7 +37,21 @@ public class menu extends AppCompatActivity {
                 else{};
             }
         };
-      //  int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+        if(ConnectionResult.SUCCESS != resultCode){
+            if(GooglePlayServicesUtil.isUserRecoverableError(resultCode)){
+                Toast.makeText(getApplicationContext(),"Google Play Service is not install/enabled in this device", Toast.LENGTH_LONG).show();
+                GooglePlayServicesUtil.showErrorNotification(resultCode,getApplicationContext());
+            }
+            else {
+                Toast.makeText(getApplicationContext(),"This device does not support for Google Play Services", Toast.LENGTH_LONG).show();
+            }
+        }
+        else{
+            Intent i = new Intent(this, RegistrationService.class);
+            startService(i);
+        }
+        */
         btnComprar = (Button) findViewById(R.id.btnComprador);
         btnVender = (Button) findViewById(R.id.btnVendedor);
 
@@ -45,11 +62,13 @@ public class menu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        /*
         Intent i = new Intent(this, RegistrationService.class);
         startService(i);
-    }
+        */
 
+    }
+    /*
     @Override
     protected void onResume() {
         super.onResume();
@@ -65,6 +84,6 @@ public class menu extends AppCompatActivity {
         super.onPause();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
     }
-
+    */
 
 }

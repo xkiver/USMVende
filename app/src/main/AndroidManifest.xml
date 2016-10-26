@@ -40,11 +40,14 @@
 
             </intent-filter>
         </receiver>
-        <service android:name=".RegistrationService" android:exported="false" >
+
+        <service android:name=".TokenRefreshListenerService" android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID" />
             </intent-filter>
         </service>
+
+        <service android:name=".RegistrationService" android:exported="false" />
 
         <service
             android:name=".NotificationsListenerService"

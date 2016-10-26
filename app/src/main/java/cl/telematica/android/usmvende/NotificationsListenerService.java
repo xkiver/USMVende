@@ -9,19 +9,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
-import com.google.android.gms.games.Notifications;
+//import com.google.android.gms.games.Notifications;
 import com.google.android.gms.gcm.GcmListenerService;
-import com.google.firebase.messaging.RemoteMessage;
+//import com.google.firebase.messaging.RemoteMessage;
 
-/**
- * Created by simon on 24-10-2016.
- */
 
 public class NotificationsListenerService extends GcmListenerService {
-
+    /*
     @Override
     public void onMessageReceived(String s, Bundle data) {
-        //super.onMessageReceived(s, bundle);
         String message = data.getString("message");
         sendNotification(message);
     }
@@ -43,7 +39,8 @@ public class NotificationsListenerService extends GcmListenerService {
                 .setContentIntent(pendingIntent);
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0,noBuilder.build());
-    }
 
+    }
+        */
 
 }

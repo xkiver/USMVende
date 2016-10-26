@@ -1,8 +1,6 @@
 package cl.telematica.android.usmvende;
 
-/**
- * Created by jvquiroga on 05-10-2016.
- */
+
 public class Producto {
     private String nombreP;
     private String descripcion;
