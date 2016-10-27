@@ -35,10 +35,13 @@ public class Comprador extends AppCompatActivity {
 
     public List<Producto> getListProduct(){
         List<Producto> producto = new ArrayList<>();
-        for(int i = 0; i < 20; i++) {
-            producto.
-            producto.add();
+        for(int i = 0; i < 4; i++) {
+            Producto  p = new Producto();
+            p.setDescripcion("dsfa");
+            p.setNombreP("234sfdfs");
+            p.getPrecio("213");
+            producto.add(p);
         }
-        return list;
+        return producto;
     }
 }

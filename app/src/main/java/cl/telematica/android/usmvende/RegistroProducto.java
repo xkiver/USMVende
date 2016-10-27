@@ -3,6 +3,7 @@ package cl.telematica.android.usmvende;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.LabeledIntent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -41,7 +42,7 @@ public class RegistroProducto extends AppCompatActivity implements View.OnClickL
     EditText txtNP, txtDP, txtPP, txtNV;
     //Button btnRP, btnVP;
     Button btnRP;
-    private Switch mySwitch;
+    Switch mySwitch;
     TextView tvIsConnected;
     TextView mLatitudeData;
     TextView mLongitudeData;
@@ -55,6 +56,8 @@ public class RegistroProducto extends AppCompatActivity implements View.OnClickL
     //Boolean gpsactivo = false;
     Context mcontext;
 
+    //Intent ix = getIntent();
+    //String receive = (String) ix.getStringExtra("topic");
 
     //CLASE que extiende de AsyncTask para que en segundo plano conecte con el servidor y localice posicion
     public class HttpAsyncTask extends AsyncTask<String, Void, String> {
@@ -128,24 +131,25 @@ public class RegistroProducto extends AppCompatActivity implements View.OnClickL
                 if(isChecked){
                     switchStatus.setText("Vendiendo");
                     switchStatus.setBackgroundColor(0xFF00CC00);
+                    String Long;
+                    String Lati;
+                    if (ActivityCompat.checkSelfPermission(mcontext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mcontext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        showPermissionErrorMsg();
+                        return;
+                    }
+                    else
+                    {
+                        //Toast.makeText(this, "Obteniendo localizacion...", Toast.LENGTH_LONG).show();
+                        Lati=mLatitudeData.getText().toString();
+                        Long=mLongitudeData.getText().toString();
+                    }
+                    //Toast.makeText(this, "Ejecutando hilo..", Toast.LENGTH_LONG).show();
+                    new HttpAsyncTask().execute("http://usmvende.telprojects.xyz/vender", NP, DP, PP, NV,Lati,Long);
                 }else{
                     switchStatus.setText("No Vendiendo");
                     switchStatus.setBackgroundColor(0xFFFF0000);
                 }
-                String Long;
-                String Lati;
-                if (ActivityCompat.checkSelfPermission(mcontext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mcontext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    showPermissionErrorMsg();
-                    return;
-                }
-                else
-                {
-                    //Toast.makeText(this, "Obteniendo localizacion...", Toast.LENGTH_LONG).show();
-                    Lati=mLatitudeData.getText().toString();
-                    Long=mLongitudeData.getText().toString();
-                }
-                //Toast.makeText(this, "Ejecutando hilo..", Toast.LENGTH_LONG).show();
-                new HttpAsyncTask().execute("http://usmvende.telprojects.xyz/vender", NP, DP, PP, NV,Lati,Long);
+
 
             }
         });
