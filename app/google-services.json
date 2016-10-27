@@ -1,7 +1,9 @@
 {
   "project_info": {
     "project_number": "480701540016",
-    "project_id": "usmvende"
+    "firebase_url": "https://usmvende.firebaseio.com",
+    "project_id": "usmvende",
+    "storage_bucket": "usmvende.appspot.com"
   },
   "client": [
     {
@@ -11,7 +13,12 @@
           "package_name": "cl.telematica.android.usmvende"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "480701540016-3rbbrirbr60t1t9up3eb9nephm5tp2q2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBy7n2hG2q0m__3lNNlPMd05hidNUmqgtE"
@@ -26,7 +33,7 @@
           "other_platform_oauth_client": []
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }
