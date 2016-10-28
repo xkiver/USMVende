@@ -3,6 +3,7 @@ package cl.telematica.android.usmvende;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.LabeledIntent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -17,7 +18,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,10 +40,13 @@ import java.util.StringTokenizer;
 public class RegistroProducto extends AppCompatActivity implements View.OnClickListener, LocationView {
 
     EditText txtNP, txtDP, txtPP, txtNV;
-    Button btnRP, btnVP;
+    //Button btnRP, btnVP;
+    Button btnRP;
+    Switch mySwitch;
     TextView tvIsConnected;
     TextView mLatitudeData;
     TextView mLongitudeData;
+    TextView switchStatus;
 
     Producto person;
     String NP, DP, PP, NV;
@@ -49,6 +55,9 @@ public class RegistroProducto extends AppCompatActivity implements View.OnClickL
     LocationManager locationManager; //para pasarle un servicio de localizacion
     //Boolean gpsactivo = false;
     Context mcontext;
+
+    //Intent ix = getIntent();
+    //String receive = (String) ix.getStringExtra("topic");
 
     //CLASE que extiende de AsyncTask para que en segundo plano conecte con el servidor y localice posicion
     public class HttpAsyncTask extends AsyncTask<String, Void, String> {
@@ -96,7 +105,9 @@ public class RegistroProducto extends AppCompatActivity implements View.OnClickL
         txtNV = (EditText) findViewById(R.id.txtNombreVendedor);
         tvIsConnected = (TextView) findViewById(R.id.tvIsConnected);
         btnRP = (Button) findViewById(R.id.btnRegistrarProducto);
-        btnVP = (Button) findViewById(R.id.btnVenderProducto);
+        //btnVP = (Button) findViewById(R.id.btnVenderProducto);
+        switchStatus= (TextView) findViewById(R.id.status);
+        mySwitch = (Switch) findViewById(R.id.btnVenderProducto);
 
         // check if you are connected or not
         if (isConnected()) {
@@ -107,7 +118,42 @@ public class RegistroProducto extends AppCompatActivity implements View.OnClickL
         }
         // add click listener to Button "POST"
         btnRP.setOnClickListener(this);
-        btnVP.setOnClickListener(this);
+        //btnVP.setOnClickListener(this);
+        mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String NP, DP, PP, NV;
+                NP = txtNP.getText().toString();
+                DP = txtDP.getText().toString();
+                PP = txtPP.getText().toString();
+                NV = txtNV.getText().toString();
+
+                if(isChecked){
+                    switchStatus.setText("Vendiendo");
+                    switchStatus.setBackgroundColor(0xFF00CC00);
+                    String Long;
+                    String Lati;
+                    if (ActivityCompat.checkSelfPermission(mcontext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mcontext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        showPermissionErrorMsg();
+                        return;
+                    }
+                    else
+                    {
+                        //Toast.makeText(this, "Obteniendo localizacion...", Toast.LENGTH_LONG).show();
+                        Lati=mLatitudeData.getText().toString();
+                        Long=mLongitudeData.getText().toString();
+                    }
+                    //Toast.makeText(this, "Ejecutando hilo..", Toast.LENGTH_LONG).show();
+                    new HttpAsyncTask().execute("http://usmvende.telprojects.xyz/vender", NP, DP, PP, NV,Lati,Long);
+                }else{
+                    switchStatus.setText("No Vendiendo");
+                    switchStatus.setBackgroundColor(0xFFFF0000);
+                }
+
+
+            }
+        });
+
     }
 
     // Metodo encargado de la implementacion de los botones y la obtencion de datos
@@ -127,6 +173,7 @@ public class RegistroProducto extends AppCompatActivity implements View.OnClickL
                 }
                 new HttpAsyncTask().execute("http://usmvende.telprojects.xyz/nuevo_producto", NP, DP, PP, NV,"","");
                 break;
+            /*
             case R.id.btnVenderProducto:
                 String Long;
                 String Lati;
@@ -144,10 +191,10 @@ public class RegistroProducto extends AppCompatActivity implements View.OnClickL
                 //Toast.makeText(this, "Ejecutando hilo..", Toast.LENGTH_LONG).show();
                 new HttpAsyncTask().execute("http://usmvende.telprojects.xyz/vender", NP, DP, PP, NV,Lati,Long);
                 break;
+                */
         }
 
     }
-
 
     //Metodo que realiza la conexion y procesa los datos de envio y recibo
     public static String POST(String targeturl, Producto person) {
@@ -221,26 +268,6 @@ public class RegistroProducto extends AppCompatActivity implements View.OnClickL
 
         return response.toString();
     }//POST
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     //Metodo para asegurarse de que no se envie info en vacia
