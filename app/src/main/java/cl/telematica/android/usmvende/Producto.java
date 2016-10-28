@@ -1,14 +1,13 @@
 package cl.telematica.android.usmvende;
 
-/**
- * Created by jvquiroga on 05-10-2016.
- */
+
 public class Producto {
     private String nombreP;
     private String descripcion;
     private String precio;
     private String nombreV;
     private String localizacion;
+    private String topic;
 
     public void setNombreP(String nombre){
         this.nombreP = nombre;
@@ -48,4 +47,12 @@ public class Producto {
         return localizacion;
     }
 
+    public void setTopic(String topic){
+
+        this.topic= topic;
+    }
+
+    public String getTopic(){
+        return topic;
+    }
 }
