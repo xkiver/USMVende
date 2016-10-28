@@ -62,6 +62,7 @@ public class menu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         token = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "Token: " + token);
         Toast.makeText(menu.this, token, Toast.LENGTH_SHORT).show();

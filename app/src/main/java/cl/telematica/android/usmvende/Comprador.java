@@ -22,11 +22,13 @@ public class Comprador extends AppCompatActivity {
         setContentView(R.layout.activity_comprador);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        //comentar cuando sea la lista dinamica
         recyclerView.setHasFixedSize(true);
         layoutManagerComprador = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManagerComprador);
         adapter = new MyAdapterComprador(getListProduct());
         recyclerView.setAdapter(adapter);
+
 
     }
 
@@ -34,9 +36,10 @@ public class Comprador extends AppCompatActivity {
         List<Producto> producto = new ArrayList<>();
         Producto  p = new Producto();
         for(int i = 0; i < 4; i++) {
-            p.setDescripcion("Buena calidad"+i);
-            p.setNombreP("Usuario"+i);
-            p.setPrecio("200"+i);
+            Producto  p = new Producto();
+            p.setDescripcion("Producto "+i+" es muy bonito");
+            p.setNombreP("Producto"+ i);
+            p.setPrecio("$22"+i);
             producto.add(p);
         }
         return producto;

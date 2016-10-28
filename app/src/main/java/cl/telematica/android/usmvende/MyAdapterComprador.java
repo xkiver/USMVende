@@ -41,6 +41,8 @@ public class MyAdapterComprador extends RecyclerView.Adapter<MyAdapterComprador.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_view_comprador, parent, false);
+
+
         return new ViewHolder(v);
     }
 
@@ -52,5 +54,8 @@ public class MyAdapterComprador extends RecyclerView.Adapter<MyAdapterComprador.
         holder.productPrecio.setText(produc.getPrecio());
     }
 
-
+   /* @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+    }*/
 }
