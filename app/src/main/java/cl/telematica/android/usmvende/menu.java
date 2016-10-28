@@ -55,6 +55,13 @@ public class menu extends AppCompatActivity {
             }
         });
 
+        btnComprar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(menu.this,Comprador.class);
+                startActivity(intent);
+            }
+        });
         token = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "Token: " + token);
         Toast.makeText(menu.this, token, Toast.LENGTH_SHORT).show();

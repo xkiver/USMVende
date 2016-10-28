@@ -11,15 +11,14 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
-/**
- * Created by simon on 27-10-2016.
- */
 
 public class MyAdapterComprador extends RecyclerView.Adapter<MyAdapterComprador.ViewHolder> {
 
     private List<Producto> producto;
 
-    public MyAdapterComprador(List<Producto> producto){this.producto = producto;}
+    public MyAdapterComprador(List<Producto> producto){
+        this.producto = producto;
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
@@ -41,16 +40,16 @@ public class MyAdapterComprador extends RecyclerView.Adapter<MyAdapterComprador.
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_comprador,
-                                                                  parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_view_comprador, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.productName.setText(producto.get(position).getNombreP());
-        holder.productDesc.setText(producto.get(position).getDescripcion());
-        holder.productPrecio.setText(producto.get(position).getPrecio());
+        Producto produc = producto.get(position);
+        holder.productName.setText(produc.getNombreP());
+        holder.productDesc.setText(produc.getDescripcion());
+        holder.productPrecio.setText(produc.getPrecio());
     }
 
 

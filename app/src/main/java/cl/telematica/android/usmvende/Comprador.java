@@ -9,37 +9,34 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by simon on 27-10-2016.
- */
 
 public class Comprador extends AppCompatActivity {
 
 
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManagerComprador;
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
+    RecyclerView.LayoutManager layoutManagerComprador;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comprador);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-
-        layoutManagerComprador = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL,
-                                                        false);
+        recyclerView.setHasFixedSize(true);
+        layoutManagerComprador = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManagerComprador);
         adapter = new MyAdapterComprador(getListProduct());
+        recyclerView.setAdapter(adapter);
 
     }
 
     public List<Producto> getListProduct(){
         List<Producto> producto = new ArrayList<>();
+        Producto  p = new Producto();
         for(int i = 0; i < 4; i++) {
-            Producto  p = new Producto();
-            p.setDescripcion("dsfa");
-            p.setNombreP("234sfdfs");
-            p.getPrecio("213");
+            p.setDescripcion("Buena calidad"+i);
+            p.setNombreP("Usuario"+i);
+            p.setPrecio("200"+i);
             producto.add(p);
         }
         return producto;
