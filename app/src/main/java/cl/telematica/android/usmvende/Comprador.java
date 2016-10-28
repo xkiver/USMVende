@@ -34,7 +34,6 @@ public class Comprador extends AppCompatActivity {
 
     public List<Producto> getListProduct(){
         List<Producto> producto = new ArrayList<>();
-        Producto  p = new Producto();
         for(int i = 0; i < 4; i++) {
             Producto  p = new Producto();
             p.setDescripcion("Producto "+i+" es muy bonito");
