@@ -25,21 +25,22 @@ public class Comprador extends AppCompatActivity {
         setContentView(R.layout.activity_comprador);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-
-        layoutManagerComprador = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL,
+        //comentar cuando sea la lista dinamica
+        recyclerView.setHasFixedSize(true);
+        layoutManagerComprador = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL,
                                                         false);
         recyclerView.setLayoutManager(layoutManagerComprador);
         adapter = new MyAdapterComprador(getListProduct());
-
+        recyclerView.setAdapter(adapter);
     }
 
     public List<Producto> getListProduct(){
         List<Producto> producto = new ArrayList<>();
         for(int i = 0; i < 4; i++) {
             Producto  p = new Producto();
-            p.setDescripcion("dsfa");
-            p.setNombreP("234sfdfs");
-            p.getPrecio("213");
+            p.setDescripcion("Producto "+i+" es muy bonito");
+            p.setNombreP("Producto"+ i);
+            p.setPrecio("$22"+i);
             producto.add(p);
         }
         return producto;

@@ -40,5 +40,6 @@
         </service>
         <!-- [END firebase_iid_service] -->
         <activity android:name=".RegistroProducto"></activity>
+        <activity android:name=".Comprador"></activity>
     </application>
 </manifest>

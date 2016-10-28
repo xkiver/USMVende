@@ -41,17 +41,22 @@ public class MyAdapterComprador extends RecyclerView.Adapter<MyAdapterComprador.
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_comprador,
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_view_comprador,
                                                                   parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.productName.setText(producto.get(position).getNombreP());
-        holder.productDesc.setText(producto.get(position).getDescripcion());
-        holder.productPrecio.setText(producto.get(position).getPrecio());
+        Producto p = producto.get(position);
+
+        holder.productName.setText(p.getNombreP());
+        holder.productDesc.setText(p.getDescripcion());
+        holder.productPrecio.setText(p.getPrecio());
     }
 
-
+   /* @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+    }*/
 }
